@@ -1,15 +1,17 @@
 import React from 'react';
 
+import Footer from '../Footer';
 import Header from '../Header';
 import PostsList from '../PostsList';
-import Footer from '../Footer';
 
-export default function Layout() {
+export default function Layout({ themeValue }) {
+  
+
   return (
     <>
-      <Header />
+      <Header themeValue={themeValue}/>
       <PostsList />
-      <Footer />
+      <Footer themeValue={themeValue} />
     </>
   );
 }

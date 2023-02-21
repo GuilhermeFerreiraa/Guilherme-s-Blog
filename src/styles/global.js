@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
+
 export default createGlobalStyle`
   body {
-    background: #222;
-    color: #fff;
-    font-family: sans-serif;
+    background: ${props => props.theme.backgroundColor};
+    color: ${props => props.theme.textColor};
+    font-family: 'montserrat', sans-serif;
   }
 `;
