@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import ContextTheme from "../../context/ContextTheme";
+import { ThemeContext } from "../../context/ThemeContext";
 
 import { Container } from "./styles";
 
 export default function Footer({ themeValue }) {
-  const { handleToggleTheme } = useContext(ContextTheme);
+  const { handleToggleTheme } = useContext(ThemeContext);
 
   return (
     <Container>

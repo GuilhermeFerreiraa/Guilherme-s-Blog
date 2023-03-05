@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import Footer from '../Footer';
-import Header from '../Header';
-import PostsList from '../PostsList';
+import Footer from "../Footer";
+import Header from "../Header";
+import PostsList from "../PostsList";
 
-export default function Layout({ themeValue }) {
-  
-
+export default function Layout({ themeValue, onToggleTheme }) {
   return (
     <>
-      <Header themeValue={themeValue}/>
+      <Header />
       <PostsList />
-      <Footer themeValue={themeValue} />
+      <Footer />
     </>
   );
 }
