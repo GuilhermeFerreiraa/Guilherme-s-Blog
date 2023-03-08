@@ -1,34 +1,41 @@
 import React, { Component } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Container } from "./styles";
-export default class Header extends Component {
-  render() {
-    return (
-      <ThemeContext.Consumer>
-        {({ theme, handleToggleTheme }) => (
-          <Container>
-            <h1>JStack's Blog</h1>
-            <button onClick={handleToggleTheme} type="button">
-              {theme == "dark" ? "🌞" : "🌑"}
-            </button>
-          </Container>
+
+function HOC(ComponentHeader) {
+  return class Component extends React.Component {
+    render() {
+      return (
+        <ThemeContext.Consumer>
+        {(value) => (
+          <ComponentHeader {...value} />
         )}
       </ThemeContext.Consumer>
+      );
+    }
+  };
+}
+
+class Header extends Component {
+
+  // conseguimos monitorar as alteraçoes na contextAPI através da função componentDidUpdate, sendo renderizado os valores na função HOC
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.theme !== prevProps.theme){
+      console.log('tema mudou...')
+    }
+  }
+
+  
+  render() {
+    return (
+      <Container>
+      <h1>JStack's Blog</h1>
+      <button onClick={this.props.handleToggleTheme} type="button">
+        {this.props.theme == "dark" ? "🌞" : "🌑"}
+      </button>
+    </Container>
     );
   }
 }
-// função da context API handleToggleTheme
-// export default function Header({ onToggleTheme, themeValue }) {
-//   const { handleToggleTheme } = useContext(ContextTheme)
 
-//   return (
-//     <Container>
-//       <h1>JStack's Blog</h1>
-//       <button onClick={handleToggleTheme} type="button">
-//         {themeValue == 'dark' ? '🌞' : '🌑'}
-//       </button>
-//     </Container>
-//   );
-// }
-
-// PROPS SÃO READ ONLY
+export default HOC(Header);
